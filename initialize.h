@@ -62,15 +62,15 @@ void MainScreen()
 		switch( m_select )
 		{
 			case 's':
-				printf( "\a" );
+				//printf( "\a" );
 				SelectLevel();
 				break;
 			case 'r':
-				printf( "\a" );
+				//printf( "\a" );
 				Ranking();
 				break;
 			case 'c':
-				printf( "\a" );
+				//printf( "\a" );
 				Credit();
 				break;
 			default:
@@ -112,11 +112,11 @@ void SelectLevel()
 		switch( m_select )
 		{
 			case '1':
-				printf( "\a" );
+				//printf( "\a" );
 				GameStart( "level1.dat" );
 				break;
 			case 'r':
-				printf( "\a" );
+				//printf( "\a" );
 				MainScreen();
 				break;
 			default:
@@ -167,7 +167,7 @@ void Ranking()
 		m_select = getch();
 		if( m_select == 'r' )
 		{
-			printf( "\a" );
+			//printf( "\a" );
 			MainScreen();
 		}
 	}
@@ -201,7 +201,7 @@ void Credit()
 		m_select = getch();
 		if( m_select == 'r' )
 		{
-			printf( "\a" );
+			//printf( "\a" );
 			MainScreen();
 		}
 	}
