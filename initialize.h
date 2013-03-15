@@ -4,7 +4,7 @@ void SelectLevel();
 void GameStart( char _levelName[] );
 void Ranking();
 void Credit();
-void ColorChange( char _string[], char _variable );
+void ColorChange( char _string[], char _variable, int _color );
 
 void Initialize()
 {
@@ -21,9 +21,9 @@ void Initialize()
 	printf( _string );
 	SetConsoleTextAttribute( GetStdHandle(STD_OUTPUT_HANDLE), 14 );
 }*/
-void ColorChange( char _string[], char _variable[] )
+void ColorChange( char _string[], char _variable[], int _color )
 {
-	SetConsoleTextAttribute( GetStdHandle(STD_OUTPUT_HANDLE), 15 );
+	SetConsoleTextAttribute( GetStdHandle(STD_OUTPUT_HANDLE), _color );
 	printf( _string, _variable );
 	SetConsoleTextAttribute( GetStdHandle(STD_OUTPUT_HANDLE), 14 );
 }
@@ -35,22 +35,22 @@ void MainScreen()
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩        ");
-	ColorChange( "P U S H      P U S H", NULL );
+	ColorChange( "P U S H      P U S H", NULL, 15 );
 	printf( "        ▩\n" );
 	printf( "▩             By KSY CYJ             ▩\n" );
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩  " );
-	ColorChange( "▶ [ S ] 게임 시작", NULL);
+	ColorChange( "▶ [ S ] 게임 시작", NULL, 15 );
 	printf( "                ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩  " );
-	ColorChange( "▶ [ R ] 랭킹", NULL );
+	ColorChange( "▶ [ R ] 랭킹", NULL, 15 );
 	printf( "                     ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩  ");
-	ColorChange( "▶ [ C ] 크레딧", NULL );
+	ColorChange( "▶ [ C ] 크레딧", NULL, 15 );
 	printf( "                   ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩                                    ▩\n" );
@@ -87,17 +87,17 @@ void SelectLevel()
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩        ");
-	ColorChange( "P U S H      P U S H", NULL );
+	ColorChange( "P U S H      P U S H", NULL, 15 );
 	printf( "        ▩\n" );
 	printf( "▩             By KSY CYJ             ▩\n" );
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩           " );
-	ColorChange( "♧ 레벨선택 ♧", NULL );
+	ColorChange( "♧ 레벨선택 ♧", NULL, 15 );
 	printf( "           ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩  ");
-	ColorChange( "▶ [ 1 ] Level 1", NULL );
+	ColorChange( "▶ [ 1 ] Level 1", NULL, 15 );
 	printf("                  ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩                                    ▩\n" );
@@ -135,28 +135,28 @@ void Ranking()
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩        ");
-	ColorChange( "P U S H      P U S H", NULL );
+	ColorChange( "P U S H      P U S H", NULL, 15 );
 	printf( "        ▩\n" );
 	printf( "▩             By KSY CYJ             ▩\n" );
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩            ");
-	ColorChange( "♧ 랭킹 ♧", NULL);
+	ColorChange( "♧ 랭킹 ♧", NULL, 15 );
 	printf("              ▩\n" );
 	printf( "▩  " );
-	ColorChange( "①위 %3s", test );
+	ColorChange( "①위 %3s", test, 15 );
 	printf("                       ▩\n" );
 	printf( "▩  " );
-	ColorChange( "②위 %3s", test );
+	ColorChange( "②위 %3s", test, 15 );
 	printf("                       ▩\n" );
 	printf( "▩  " );
-	ColorChange( "③위 %3s", test );
+	ColorChange( "③위 %3s", test, 15 );
 	printf("                       ▩\n" );
 	printf( "▩  " );
-	ColorChange( "④위 %3s", test );
+	ColorChange( "④위 %3s", test, 15 );
 	printf("                       ▩\n" );
 	printf( "▩  " );
-	ColorChange( "ⓩ[꼴지] %3s", test2 );
+	ColorChange( "ⓩ[꼴지] %3s", test2, 15 );
 	printf("                   ▩\n" );
 	printf( "▩          돌아가려면 [R]키          ▩\n" );
 	printf( "▩                                    ▩\n" );
@@ -181,7 +181,7 @@ void Credit()
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩        ");
-	ColorChange( "P U S H      P U S H", NULL );
+	ColorChange( "P U S H      P U S H", NULL, 15 );
 	printf( "        ▩\n" );
 	printf( "▩             By KSY CYJ             ▩\n" );
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );

@@ -1,17 +1,25 @@
-const char MAP_LEVEL1[12][17] =
+const char MAP_LEVEL1[13][20] =
 	{
-		"22222222222222222",
-		"21111111111111112",
-		"21111222111111112",
-		"21111242111111112",
-		"21111212222111112",
-		"21122231342111112",
-		"21124301222111112",
-		"21122223211111112",
-		"21111124211111112",
-		"21111122211111112",
-		"21111111111111112",
-		"22222222222222222"
+		//f for Frame
+		//b for Blank
+		//w for Wall
+		//x for boX
+		//s for Stuff
+		//p for Player
+		//i for in
+		"ffffffffffffffffffff",
+		"fbbbbbbbbbbbbbbbbbbf",
+		"fbbbbbbbbbbbbbbbbbbf",
+		"fbbbbbbbwwwbbbbbbbbf",
+		"fbbbbbbbwxwbbbbbbbbf",
+		"fbbbbbbbwbwwwwbbbbbf",
+		"fbbbbbwwwsbsxwbbbbbf",
+		"fbbbbbwxspbwwwbbbbbf",
+		"fbbbbbwwwwswbbbbbbbf",
+		"fbbbbbbbbwxwbbbbbbbf",
+		"fbbbbbbbbwwwbbbbbbbf",
+		"fbbbbbbbbbbbbbbbbbbf",
+		"ffffffffffffffffffff"
 	};
 
 
@@ -19,6 +27,8 @@ void Draw( char _map[] );
 
 void Draw( char _map[] )
 {
+	char m_level = 1;
+	char m_count = 0;
 	int i;
 	int j;
 	//char m_map[] = _map;
@@ -27,32 +37,38 @@ void Draw( char _map[] )
 
 	system( "cls" );
 
-	for( i=0; i<12; i++ )
+	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
+	printf( "▩ " );
+	ColorChange( "LEVEL %02d", m_level, 15 );
+	printf( " ▩ " );
+	ColorChange( "COUNT : %03dMOVES", m_count, 15 );
+	printf( "       ▩" );
+	for( i=0; i<13; i++ )
 	{
-		for( j=0; j<17; j++ )
+		for( j=0; j<20; j++ )
 		{
 			switch( MAP_LEVEL1[i][j] )
 			{
-			case '1':
+			case 'b':
 				printf( "  " );
 				break;
-			case '2':
-				printf( "▩" );
+			case 'w':
+				ColorChange( "▩", NULL, 8 );
 				break;
-			case '3':
-				printf( "■" );
+			case 's':
+				ColorChange( "■", NULL, 9 );
 				break;
-			case '4':
-				printf( "□" );
+			case 'x':
+				ColorChange( "□", NULL, 6 );
 				break;
-			case '5':
-				printf( "▣" );
+			case 'i':
+				printf( "▣", NULL, 11 );
 				break;
-			case '0':
-				printf( "㈜" );
+			case 'p':
+				ColorChange( "㈜", NULL, 15 );
 				break;
 			default:
-				printf( "!!!WARNING!!! BUG!!!\a" );
+				printf( "▩" );
 			}
 			//printf( "%c", MAP_LEVEL1[i][j] );//디버그용
 		}
