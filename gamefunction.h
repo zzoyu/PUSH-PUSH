@@ -95,22 +95,22 @@ void Move( int _x, int _y )
 
 	switch( m_key )
 	{
-		case 72:
+		case 72: //╩С
 			g_count = g_count + 1;
 			i = -1;
 			j = 0;
 			break;
-		case 80:
+		case 80: //го
 			g_count = g_count + 1;
 			i = 1;
 			j = 0;
 			break;
-		case 75:
+		case 75: //аб
 			g_count = g_count + 1;
 			i = 0;
 			j = -1;
 			break;
-		case 77:
+		case 77: //©Л
 			g_count = g_count + 1;
 			i = 0;
 			j = 1;
@@ -120,9 +120,30 @@ void Move( int _x, int _y )
 	}
 	switch( g_map[_x+i][_y+j] )
 	{
-	case 'b':
+	case 'b' : //╩С
 		g_map[_x+i][_y+j] = g_map[_x][_y];
 		g_map[_x][_y] = 'b';
+		break;
+	case 's':
+		switch( g_map[_x+2*i][_y+2*j] )
+		{
+			case 'b':
+				g_map[_x+2*i][_y+2*j] = 's';
+				g_map[_x+i][_y+j] = 'p';
+				g_map[_x][_y] = 'b';
+				break;
+			case 'x':
+				g_map[_x+2*i][_y+2*j] = 'i';
+				g_map[_x+i][_y+j] = 'p';
+				g_map[_x][_y] = 'b';
+				printf("\a");
+				break;
+			default:
+				break;
+
+		}
+		break;
+	default:
 		break;
 	}
 	Sleep(50);
