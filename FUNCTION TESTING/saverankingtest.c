@@ -14,7 +14,7 @@ int main()
 
 	m_fp = fopen( "ranking.dat", "a" );
 
-	fprintf( m_fp, "%s=%d\n", m_name, m_score );
+	fprintf( m_fp, "%s = %d\n", m_name, m_score );
 	fclose( m_fp );
 
 	return 0;

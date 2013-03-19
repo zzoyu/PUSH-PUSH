@@ -154,13 +154,6 @@ void Move( int _x, int _y )
 void SaveScore( char _name[], int _score )
 {
 	FILE *m_fp;
-
-	printf( "파일 저장 기능을 테스트 하고 있습니다.\n" );
-	printf( "Please enter your name. : " );
-	scanf( "%s", m_name );
-	printf( "Please enter your score. : " );
-	scanf( "%d", &m_score );
-
 	m_fp = fopen( "userscore.dat", "a" );
 
 	fprintf( m_fp, "%s=%d\n", _name, _score );
