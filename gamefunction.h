@@ -1,31 +1,11 @@
-char g_map[13][20] =
-	{
-		//f for Frame
-		//b for Blank
-		//w for Wall
-		//x for boX
-		//s for Stuff
-		//p for Player
-		//i for in
-		"ffffffffffffffffffff",
-		"fbbbbbbbbbbbbbbbbbbf",
-		"fbbbbbbbbbbbbbbbbbbf",
-		"fbbbbbbbwwwbbbbbbbbf",
-		"fbbbbbbbwxwbbbbbbbbf",
-		"fbbbbbbbwbwwwwbbbbbf",
-		"fbbbbbwwwsbsxwbbbbbf",
-		"fbbbbbwxspbwwwbbbbbf",
-		"fbbbbbwwwwswbbbbbbbf",
-		"fbbbbbbbbwxwbbbbbbbf",
-		"fbbbbbbbbwwwbbbbbbbf",
-		"fbbbbbbbbbbbbbbbbbbf",
-		"ffffffffffffffffffff"
-	};
+char g_map[13][20];
 
 int g_count = 0;
 
 void Draw( char _map[] );
 void Move( int _x, int _y );
+void CursorMove( int _x, int _y );
+void Popup();
 void SaveScore( char _name[], int _score );
 
 void Draw( char _map[] )
@@ -36,6 +16,8 @@ void Draw( char _map[] )
 
 	int m_x;
 	int m_y;
+
+	int m_boxCount=0;
 
 	system( "cls" );
 
@@ -61,6 +43,7 @@ void Draw( char _map[] )
 				ColorChange( "■", NULL, 9 );
 				break;
 			case 'x':
+				m_boxCount = m_boxCount + 1;
 				ColorChange( "□", NULL, 6 );
 				break;
 			case 'i':
@@ -79,11 +62,22 @@ void Draw( char _map[] )
 		printf( "\n" );
 		//printf( " i:%02d j:%02d\n", i,j );//디버그용, i와 j의 값을 확인하기 위해
 	}
-	Move( m_x, m_y );
+	if( m_boxCount != 0 )
+	{
+		Move( m_x, m_y );
+	}
+	else
+	{
+		Popup();
+	}
 }
 
 void GameStart( char _levelName[] )
 {
+	printf("0\n");
+	getch();
+	MapLoad( _levelName );
+	getch();
 	Draw( g_map );
 }
 
@@ -151,11 +145,43 @@ void Move( int _x, int _y )
 	Draw( g_map );
 }
 
-void SaveScore( char _name[], int _score )
+void CursorMove( int _x, int _y )
 {
-	FILE *m_fp;
-	m_fp = fopen( "userscore.dat", "a" );
+	COORD m_position = { _x-1, _y-1 };
+	SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), m_position );
+}
 
-	fprintf( m_fp, "%s=%d\n", _name, _score );
+void Popup()
+{	
+	char r_name[10];
+	system( "cls" );
+	CursorMove( 11, 5 );
+	printf( "┏━━━━━━━━━┓\n" );
+	CursorMove( 11, 6 );
+	printf( "┃ Congraturation ! ┃\n" );
+	CursorMove( 11, 7 );
+	printf( "┗━━━━━━━━━┛\n" );
+
+	CursorMove( 0, 16 );
+	getch();
+	MainScreen();
+}
+
+void MapLoad( char _fileName[] )
+{
+
+	int i = 1;
+
+	FILE *m_fp;
+	m_fp = fopen( _fileName, "r" );
+	if( m_fp != NULL )
+	{
+		while( !feof( m_fp ) )
+		{
+			fgets( g_map[i-1], 21, m_fp );
+			i = i + 1;
+		}
+	}
 	fclose( m_fp );
+	printf("1\n");
 }

@@ -1,0 +1,53 @@
+﻿Build started 2013-03-19 오후 5:52:06.
+     1>Project "D:\내 문서\[13스마트컨트롤러 - 조유진]수업\C\PROJECT\PUSH-PUSH\debug\debug\debug.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\debug.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\main.c
+         main.c
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\initialize.h(11): warning C4133: 'function' : incompatible types - from 'char [25]' to 'LPCWSTR'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\initialize.h(25): warning C4028: formal parameter 2 different from declaration
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\initialize.h(59): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\initialize.h(105): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\initialize.h(147): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(26): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(26): warning C4024: 'ColorChange' : different types for formal and actual parameter 2
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(28): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(28): warning C4024: 'ColorChange' : different types for formal and actual parameter 2
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(78): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(80): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(81): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char [13][20]'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(81): warning C4024: 'Draw' : different types for formal and actual parameter 1
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(89): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(145): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char [13][20]'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(145): warning C4024: 'Draw' : different types for formal and actual parameter 1
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(166): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(156): warning C4101: 'r_name' : unreferenced local variable
+     1>d:\내 문서\[13스마트컨트롤러 - 조유진]수업\c\project\push-push\gamefunction.h(176): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\내 문서\[13스마트컨트롤러 - 조유진]수업\C\PROJECT\PUSH-PUSH\debug\Debug\debug.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\debug.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\내 문서\[13스마트컨트롤러 - 조유진]수업\C\PROJECT\PUSH-PUSH\debug\Debug\debug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\내 문서\[13스마트컨트롤러 - 조유진]수업\C\PROJECT\PUSH-PUSH\debug\Debug\debug.lib" /MACHINE:X86 Debug\debug.exe.embed.manifest.res
+         Debug\main.obj
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\debug.exe.embed.manifest" /manifest Debug\debug.exe.intermediate.manifest
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         debug.vcxproj -> D:\내 문서\[13스마트컨트롤러 - 조유진]수업\C\PROJECT\PUSH-PUSH\debug\Debug\debug.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\debug.unsuccessfulbuild".
+         Touching "Debug\debug.lastbuildstate".
+     1>Done Building Project "D:\내 문서\[13스마트컨트롤러 - 조유진]수업\C\PROJECT\PUSH-PUSH\debug\debug\debug.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02
