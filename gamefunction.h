@@ -2,6 +2,8 @@ char g_map[13][20];
 
 int g_count = 0;
 
+char g_fileName[10];
+
 void Draw( char _map[] );
 void Move( int _x, int _y );
 void MoveCursor( int _x, int _y );
@@ -24,7 +26,7 @@ void Draw( char _map[] )
 
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 	printf( "▩ " );
-	ColorChange( "LEVEL %02d", m_level, 15 );
+	ColorChange( "R키 리셋", NULL, 15 );
 	printf( " ▩ " );
 	ColorChange( "COUNT : %03dMOVES", g_count, 15 );
 	printf( "       ▩" );
@@ -47,6 +49,11 @@ void Draw( char _map[] )
 				m_boxCount = m_boxCount + 1;
 				ColorChange( "□", NULL, 6 );
 				break;
+			case 't':
+				m_x = i;
+				m_y = j;
+				printf( "ㅱ", NULL, 11 );
+				break;
 			case 'i':
 				printf( "▣", NULL, 11 );
 				break;
@@ -65,6 +72,7 @@ void Draw( char _map[] )
 	}
 	if( m_boxCount != 0 )
 	{
+		printf("%d, %d", m_x, m_y );
 		Move( m_x, m_y );
 	}
 	else
@@ -81,10 +89,10 @@ void GameStart( char _levelName[] )
 
 void Move( int _x, int _y )
 {
-	int i = 0;
-	int j = 0;
+	int i = 0;	//행
+	int j = 0;	//열
 
-	char m_key = getch();
+	char m_key = getch(); // 키를 입력받음 m_key 형태로
 
 	switch( m_key )
 	{
@@ -108,16 +116,42 @@ void Move( int _x, int _y )
 			i = 0;
 			j = 1;
 			break;
+		case 'r':
+			LoadData( g_fileName );
+			break;
 		default:
 			break;
 	}
 	switch( g_map[_x+i][_y+j] )
 	{
-	case 'b' : //상
-		g_map[_x+i][_y+j] = g_map[_x][_y];
-		g_map[_x][_y] = 'b';
+	case 'b' :
+		if( g_map[_x][_y] == 't' )
+		{
+			g_map[_x+i][_y+j] = 'p';
+			g_map[_x][_y] = 'x';
+		}
+		else
+		{
+			g_map[_x+i][_y+j] = g_map[_x][_y];
+			g_map[_x][_y] = 'b';
+		}
 		break;
 	case 's':
+		if( g_map[_x][_y] == 't' )
+		{
+			if( g_map[_x+2*i][_y+2*j] == 'x' )
+			{
+				g_map[_x+2*i][_y+2*j] = 'i';
+				g_map[_x+i][_y+j] = 'p';
+				g_map[_x][_y] = 'x';
+			}
+			else if( g_map[_x+2*i][_y+2*j] == 'b' )
+			{
+				g_map[_x+2*i][_y+2*j] = 's';
+				g_map[_x+i][_y+j] = 'p';
+				g_map[_x][_y] = 'x';
+			}
+		}
 		switch( g_map[_x+2*i][_y+2*j] )
 		{
 			case 'b':
@@ -136,6 +170,33 @@ void Move( int _x, int _y )
 
 		}
 		break;
+	case 'x': //짐들어갈 빈칸
+		if( g_map[_x][_y] == 't' )
+		{
+			g_map[_x+i][_y+j] = 't';
+			g_map[_x][_y] = 'x';
+		}
+		else
+		{
+			g_map[_x+i][_y+j] = 't';
+			g_map[_x][_y] = 'b';
+		}
+		break;
+	case 'i': //짐들어있는칸
+		if( g_map[_x+2*i][_y+2*j] == 'b' )
+		{
+			g_map[_x+2*i][_y+2*j] = 's';
+			g_map[_x+i][_y+j] = 't';
+			g_map[_x][_y] = 'b';
+		}
+		else if( g_map[_x+2*i][_y+2*j] == 'x' )
+		{
+			g_map[_x+2*i][_y+2*j] = 'i';
+			g_map[_x+i][_y+j] = g_map[_x][_y];
+			g_map[_x][_y] = 'x';
+		}
+		break;
+		
 	default:
 		break;
 	}
@@ -171,6 +232,7 @@ void LoadData( char _fileName[] )
 	char m_map[13][20];
 
 	int i = 0;
+
 	m_fp = fopen( _fileName, "r" );
 
 	while( !feof( m_fp ) )
