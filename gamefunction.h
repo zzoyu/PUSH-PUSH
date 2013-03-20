@@ -4,9 +4,10 @@ int g_count = 0;
 
 void Draw( char _map[] );
 void Move( int _x, int _y );
-void CursorMove( int _x, int _y );
+void MoveCursor( int _x, int _y );
 void Popup();
 void SaveScore( char _name[], int _score );
+void LoadData( char _fileName[] );
 
 void Draw( char _map[] )
 {
@@ -74,10 +75,7 @@ void Draw( char _map[] )
 
 void GameStart( char _levelName[] )
 {
-	printf("0\n");
-	getch();
-	MapLoad( _levelName );
-	getch();
+	LoadData( _levelName );
 	Draw( g_map );
 }
 
@@ -145,7 +143,7 @@ void Move( int _x, int _y )
 	Draw( g_map );
 }
 
-void CursorMove( int _x, int _y )
+void MoveCursor( int _x, int _y )
 {
 	COORD m_position = { _x-1, _y-1 };
 	SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), m_position );
@@ -155,33 +153,30 @@ void Popup()
 {	
 	char r_name[10];
 	system( "cls" );
-	CursorMove( 11, 5 );
+	MoveCursor( 11, 5 );
 	printf( "旨收收收收收收收收收旬\n" );
-	CursorMove( 11, 6 );
+	MoveCursor( 11, 6 );
 	printf( "早 Congraturation ! 早\n" );
-	CursorMove( 11, 7 );
+	MoveCursor( 11, 7 );
 	printf( "曲收收收收收收收收收旭\n" );
 
-	CursorMove( 0, 16 );
+	MoveCursor( 0, 16 );
 	getch();
 	MainScreen();
 }
 
-void MapLoad( char _fileName[] )
+void LoadData( char _fileName[] )
 {
+	FILE * m_fp;
+	char m_map[13][20];
 
-	int i = 1;
-
-	FILE *m_fp;
+	int i = 0;
 	m_fp = fopen( _fileName, "r" );
-	if( m_fp != NULL )
+
+	while( !feof( m_fp ) )
 	{
-		while( !feof( m_fp ) )
-		{
-			fgets( g_map[i-1], 21, m_fp );
-			i = i + 1;
-		}
+		fgets( g_map[i], 50, m_fp );
+		i = i + 1;
 	}
 	fclose( m_fp );
-	printf("1\n");
 }

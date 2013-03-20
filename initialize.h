@@ -5,6 +5,7 @@ void GameStart( char _levelName[] );
 void Credit();
 void ColorChange( char _string[], char _variable, int _color );
 void MapLoad( char _fileName[] );
+void MoveCursor( int _x, int _y );
 
 void Initialize()
 {
@@ -76,6 +77,7 @@ void MainScreen()
 void SelectLevel()
 {
 	char m_select = -1;
+	char m_fileName[] = "level0.dat";
 
 	system( "cls" );
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
@@ -91,26 +93,63 @@ void SelectLevel()
 	printf( "           ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩  ");
-	ColorChange( "▶ [ 1 ] Level 1", NULL, 15 );
-	printf("                  ▩\n" );
+	ColorChange( "▶ [ 1 ] 레벨 번호로 입력", NULL, 15 );
+	printf("         ▩\n" );
 	printf( "▩                                    ▩\n" );
-	printf( "▩                                    ▩\n" );
+	printf( "▩  ");
+	ColorChange( "▶ [ 2 ] 직접 파일 입력", NULL, 15 );
+	printf("           ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩          돌아가려면 [R]키          ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 
-	while( !(( m_select=='1' )||( m_select=='r' )) )
+	while( !(( m_select=='1' )||( m_select=='2' )||( m_select=='r' )) )
 	{
 		m_select = getch();
+		MoveCursor( 6, 9 );
+		printf("                        \n");
+		MoveCursor( 6, 11 );
+		printf("                        \n");
+		MoveCursor( 6, 9 );
 		switch( m_select )
 		{
 			case '1':
 				//printf( "\a" );
-				GameStart( "level1.dat" );
+				ColorChange( "레벨을 선택해 주세요.(0-5)\n", NULL, 15 );
+				MoveCursor( 6, 10 );
+				
+				m_select = getche();
+
+				if( m_select == 'r' )
+				{
+					m_select = -1;
+					SelectLevel();
+				}
+				else
+				{
+					printf( "%s", m_fileName );
+					m_fileName[5] = m_select;
+					printf( "%s", m_fileName );
+				}
+				GameStart( m_fileName );
+				break;
+			case '2':
+				//printf( "\a" );
+				ColorChange( "파일명을 입력해 주세요.\n", NULL, 15 );
+				MoveCursor( 6, 10 );
+				scanf( "%s", m_fileName );
+				if( m_fileName == "r" )
+				{
+					SelectLevel();
+				}
+				else
+				{
+					printf( "%s", m_fileName );
+				}
+				GameStart( m_fileName );
 				break;
 			case 'r':
-				//printf( "\a" );
 				MainScreen();
 				break;
 			default:
