@@ -2,14 +2,13 @@
 
 int g_count = 0;
 
-void Draw( char _map[13][20] );
+void Draw();
 void Move( int _x, int _y );
 void MoveCursor( int _x, int _y );
 void Popup();
-void SaveScore( char _name[], int _score );
 void LoadData( char _fileName[] );
 
-void Draw( char _map[13][20] )
+void Draw()
 {
 	char m_level = 1;
 	int i;
@@ -34,29 +33,29 @@ void Draw( char _map[13][20] )
 		{
 			switch( g_map[i][j] )
 			{
-			case 'b':
+			case ' ':
 				printf( "  " );
 				break;
-			case 'w':
+			case '#':
 				ColorChange( "▩", NULL, 8 );
 				break;
-			case 's':
+			case '$':
 				ColorChange( "■", NULL, 9 );
 				break;
-			case 'x':
+			case '.':
 				m_boxCount = m_boxCount + 1;
 				ColorChange( "□", NULL, 6 );
 				break;
-			case 't':
+			case '+':
 				m_x = i;
 				m_y = j;
 				m_boxCount = m_boxCount + 1;
 				printf( "ㅱ", NULL, 11 );
 				break;
-			case 'i':
+			case '*':
 				printf( "▣", NULL, 11 );
 				break;
-			case 'p':
+			case '@':
 				m_x = i;
 				m_y = j;
 				ColorChange( "㈜", NULL, 15 );
@@ -118,50 +117,53 @@ void Move( int _x, int _y )
 		case 'r':
 			LoadData( g_fileName );
 			break;
+		case 27:
+			g_count = 0;
+			MainScreen();
 		default:
 			break;
 	}
 	switch( g_map[_x+i][_y+j] )
 	{
-	case 'b' :
-		if( g_map[_x][_y] == 't' )
+	case ' ' :
+		if( g_map[_x][_y] == '+' )
 		{
-			g_map[_x+i][_y+j] = 'p';
-			g_map[_x][_y] = 'x';
+			g_map[_x+i][_y+j] = '@';
+			g_map[_x][_y] = '.';
 		}
 		else
 		{
 			g_map[_x+i][_y+j] = g_map[_x][_y];
-			g_map[_x][_y] = 'b';
+			g_map[_x][_y] = ' ';
 		}
 		break;
-	case 's':
-		if( g_map[_x][_y] == 't' )
+	case '$':
+		if( g_map[_x][_y] == '+' )
 		{
-			if( g_map[_x+2*i][_y+2*j] == 'x' )
+			if( g_map[_x+2*i][_y+2*j] == '.' )
 			{
-				g_map[_x+2*i][_y+2*j] = 'i';
-				g_map[_x+i][_y+j] = 'p';
-				g_map[_x][_y] = 'x';
+				g_map[_x+2*i][_y+2*j] = '*';
+				g_map[_x+i][_y+j] = '@';
+				g_map[_x][_y] = '.';
 			}
-			else if( g_map[_x+2*i][_y+2*j] == 'b' )
+			else if( g_map[_x+2*i][_y+2*j] == ' ' )
 			{
-				g_map[_x+2*i][_y+2*j] = 's';
-				g_map[_x+i][_y+j] = 'p';
-				g_map[_x][_y] = 'x';
+				g_map[_x+2*i][_y+2*j] = '$';
+				g_map[_x+i][_y+j] = '@';
+				g_map[_x][_y] = '.';
 			}
 		}
 		switch( g_map[_x+2*i][_y+2*j] )
 		{
-			case 'b':
-				g_map[_x+2*i][_y+2*j] = 's';
-				g_map[_x+i][_y+j] = 'p';
-				g_map[_x][_y] = 'b';
+			case ' ':
+				g_map[_x+2*i][_y+2*j] = '$';
+				g_map[_x+i][_y+j] = '@';
+				g_map[_x][_y] = ' ';
 				break;
-			case 'x':
-				g_map[_x+2*i][_y+2*j] = 'i';
-				g_map[_x+i][_y+j] = 'p';
-				g_map[_x][_y] = 'b';
+			case '.':
+				g_map[_x+2*i][_y+2*j] = '*';
+				g_map[_x+i][_y+j] = '@';
+				g_map[_x][_y] = ' ';
 				printf("\a");
 				break;
 			default:
@@ -169,31 +171,31 @@ void Move( int _x, int _y )
 
 		}
 		break;
-	case 'x': //짐들어갈 빈칸
-		if( g_map[_x][_y] == 't' )
+	case '.': //짐들어갈 빈칸
+		if( g_map[_x][_y] == '+' )
 		{
-			g_map[_x+i][_y+j] = 't';
-			g_map[_x][_y] = 'x';
+			g_map[_x+i][_y+j] = '+';
+			g_map[_x][_y] = '.';
 		}
 		else
 		{
-			g_map[_x+i][_y+j] = 't';
-			g_map[_x][_y] = 'b';
+			g_map[_x+i][_y+j] = '+';
+			g_map[_x][_y] = ' ';
 		}
 		break;
-	case 'i': //짐들어있는칸
-		if( g_map[_x+2*i][_y+2*j] == 'b' )
+	case '*': //짐들어있는칸
+		if( g_map[_x+2*i][_y+2*j] == ' ' )
 		{
-			g_map[_x+2*i][_y+2*j] = 's';
-			g_map[_x+i][_y+j] = 't';
-			g_map[_x][_y] = 'b';
+			g_map[_x+2*i][_y+2*j] = '$';
+			g_map[_x+i][_y+j] = '+';
+			g_map[_x][_y] = ' ';
 		}
-		else if( g_map[_x+2*i][_y+2*j] == 'x' )
+		else if( g_map[_x+2*i][_y+2*j] == '.' )
 		{
 			printf("\a");
-			g_map[_x+2*i][_y+2*j] = 'i';
+			g_map[_x+2*i][_y+2*j] = '*';
 			g_map[_x+i][_y+j] = g_map[_x][_y];
-			g_map[_x][_y] = 'x';
+			g_map[_x][_y] = '.';
 		}
 		break;
 		
@@ -201,7 +203,7 @@ void Move( int _x, int _y )
 		break;
 	}
 	Sleep(50);
-	Draw( g_map );
+	Draw();
 }
 
 void MoveCursor( int _x, int _y )
