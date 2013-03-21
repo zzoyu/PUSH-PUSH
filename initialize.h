@@ -1,11 +1,13 @@
-void Initialize();
+Ôªøvoid Initialize();
 void MainScreen();
 void SelectLevel();
 void GameStart( char _levelName[] );
 void Credit();
-void ColorChange( char _string[], char _variable, int _color );
+void ColorChange( char _string[], char _variable[], int _color );
 void MapLoad( char _fileName[] );
 void MoveCursor( int _x, int _y );
+
+char g_fileName[] = "level0.dat";
 
 void Initialize()
 {
@@ -15,7 +17,7 @@ void Initialize()
 	system( "cls" );
 }
 
-//«‘ºˆ ø¿πˆ∑Œµ˘¿Ã ∫“∞°¥…«œø© ¡÷ºÆ√≥∏Æ
+//Ìï®Ïàò Ïò§Î≤ÑÎ°úÎî©Ïù¥ Î∂àÍ∞ÄÎä•ÌïòÏó¨ Ï£ºÏÑùÏ≤òÎ¶¨
 /*void ColorChange( char _string[] )
 {
 	SetConsoleTextAttribute( GetStdHandle(STD_OUTPUT_HANDLE), 15 );
@@ -33,29 +35,29 @@ void MainScreen()
 	char m_select = -1;
 
 	system( "cls" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã        ");
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©        ");
 	ColorChange( "P U S H      P U S H", NULL, 15 );
-	printf( "        ¢Ã\n" );
-	printf( "¢Ã             By KSY CYJ             ¢Ã\n" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã  " );
-	ColorChange( "¢∫ [ S ] ∞‘¿” Ω√¿€", NULL, 15 );
-	printf( "                ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã  ");
-	ColorChange( "¢∫ [ C ] ≈©∑πµ˜", NULL, 15 );
-	printf( "                   ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
+	printf( "        ‚ñ©\n" );
+	printf( "‚ñ©             By KSY CYJ             ‚ñ©\n" );
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©  " );
+	ColorChange( "‚ñ∂ [ S ] Í≤åÏûÑ ÏãúÏûë", NULL, 15 );
+	printf( "                ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©  ");
+	ColorChange( "‚ñ∂ [ C ] ÌÅ¨Î†àÎîß", NULL, 15 );
+	printf( "                   ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
 
-	while( !(( m_select=='s' )||( m_select=='r' )||( m_select=='c' ) ) )
+	while( !(( m_select=='s' )||( m_select=='c' ) ) )
 	{
 		m_select = getch();
 		switch( m_select )
@@ -77,32 +79,31 @@ void MainScreen()
 void SelectLevel()
 {
 	char m_select = -1;
-	char m_fileName[] = "level0.dat";
 
 	system( "cls" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã        ");
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©        ");
 	ColorChange( "P U S H      P U S H", NULL, 15 );
-	printf( "        ¢Ã\n" );
-	printf( "¢Ã             By KSY CYJ             ¢Ã\n" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã           " );
-	ColorChange( "¢ø ∑π∫ßº±≈√ ¢ø", NULL, 15 );
-	printf( "           ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã  ");
-	ColorChange( "¢∫ [ 1 ] ∑π∫ß π¯»£∑Œ ¿‘∑¬", NULL, 15 );
-	printf("         ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã  ");
-	ColorChange( "¢∫ [ 2 ] ¡˜¡¢ ∆ƒ¿œ ¿‘∑¬", NULL, 15 );
-	printf("           ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã          µπæ∆∞°∑¡∏È [R]≈∞          ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
+	printf( "        ‚ñ©\n" );
+	printf( "‚ñ©             By KSY CYJ             ‚ñ©\n" );
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©           " );
+	ColorChange( "‚ôß Î†àÎ≤®ÏÑ†ÌÉù ‚ôß", NULL, 15 );
+	printf( "           ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©  ");
+	ColorChange( "‚ñ∂ [ 1 ] Î†àÎ≤® Î≤àÌò∏Î°ú ÏûÖÎ†•", NULL, 15 );
+	printf("         ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©  ");
+	ColorChange( "‚ñ∂ [ 2 ] ÏßÅÏ†ë ÌååÏùº ÏûÖÎ†•", NULL, 15 );
+	printf("           ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©          ÎèåÏïÑÍ∞ÄÎ†§Î©¥ [R]ÌÇ§          ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
 
 	while( !(( m_select=='1' )||( m_select=='2' )||( m_select=='r' )) )
 	{
@@ -116,7 +117,7 @@ void SelectLevel()
 		{
 			case '1':
 				//printf( "\a" );
-				ColorChange( "∑π∫ß¿ª º±≈√«ÿ ¡÷ººø‰.(0-5)\n", NULL, 15 );
+				ColorChange( "Î†àÎ≤®ÏùÑ ÏÑ†ÌÉùÌï¥ Ï£ºÏÑ∏Ïöî.(0-5)\n", NULL, 15 );
 				MoveCursor( 6, 10 );
 				
 				m_select = getche();
@@ -128,26 +129,27 @@ void SelectLevel()
 				}
 				else
 				{
-					printf( "%s", m_fileName );
-					m_fileName[5] = m_select;
-					printf( "%s", m_fileName );
+					printf( "%s", g_fileName );
+					g_fileName[5] = m_select;
+					printf( "%s", g_fileName );
 				}
-				GameStart( m_fileName );
+				GameStart( g_fileName );
 				break;
 			case '2':
 				//printf( "\a" );
-				ColorChange( "∆ƒ¿œ∏Ì¿ª ¿‘∑¬«ÿ ¡÷ººø‰.\n", NULL, 15 );
+				ColorChange( "ÌååÏùºÎ™ÖÏùÑ ÏûÖÎ†•Ìï¥ Ï£ºÏÑ∏Ïöî.\n", NULL, 15 );
 				MoveCursor( 6, 10 );
-				scanf( "%s", m_fileName );
-				if( m_fileName == "r" )
+				scanf( "%s", g_fileName );
+				if( g_fileName == "r" )
 				{
+					printf("Ï∞ªÏ∞ªÏ∞®");
 					SelectLevel();
 				}
 				else
 				{
-					printf( "%s", m_fileName );
+					printf( "%s", g_fileName );
+					GameStart( g_fileName );
 				}
-				GameStart( m_fileName );
 				break;
 			case 'r':
 				MainScreen();
@@ -163,23 +165,23 @@ void Credit()
 	char m_select = -1;
 
 	system( "cls" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã        ");
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©        ");
 	ColorChange( "P U S H      P U S H", NULL, 15 );
-	printf( "        ¢Ã\n" );
-	printf( "¢Ã             By KSY CYJ             ¢Ã\n" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã            ¢ø ≈©∑πµ˜ ¢ø            ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã           ¿Ã∑±∞≈ «—π¯¬Î            ¢Ã\n" );
-	printf( "¢Ã         «ÿ∫∏∞Ì ΩÕæ˙Ω¿¥œ¥Ÿ.         ¢Ã\n" );
-	printf( "¢Ã               πË∞Ì∆ƒ               ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã          µπæ∆∞°∑¡∏È [R]≈∞          ¢Ã\n" );
-	printf( "¢Ã                                    ¢Ã\n" );
-	printf( "¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã¢Ã\n" );
+	printf( "        ‚ñ©\n" );
+	printf( "‚ñ©             By KSY CYJ             ‚ñ©\n" );
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©            ‚ôß ÌÅ¨Î†àÎîß ‚ôß            ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©           Ïù¥Îü∞Í±∞ ÌïúÎ≤àÏØ§            ‚ñ©\n" );
+	printf( "‚ñ©         Ìï¥Î≥¥Í≥† Ïã∂ÏóàÏäµÎãàÎã§.         ‚ñ©\n" );
+	printf( "‚ñ©               Î∞∞Í≥†Ìåå               ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©          ÎèåÏïÑÍ∞ÄÎ†§Î©¥ [R]ÌÇ§          ‚ñ©\n" );
+	printf( "‚ñ©                                    ‚ñ©\n" );
+	printf( "‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©‚ñ©\n" );
 
 	while( !( m_select=='r' ) )
 	{

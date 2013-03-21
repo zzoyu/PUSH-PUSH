@@ -1,17 +1,15 @@
-char g_map[13][20];
+ï»¿char g_map[13][20];
 
 int g_count = 0;
 
-char g_fileName[10];
-
-void Draw( char _map[] );
+void Draw( char _map[13][20] );
 void Move( int _x, int _y );
 void MoveCursor( int _x, int _y );
 void Popup();
 void SaveScore( char _name[], int _score );
 void LoadData( char _fileName[] );
 
-void Draw( char _map[] )
+void Draw( char _map[13][20] )
 {
 	char m_level = 1;
 	int i;
@@ -24,12 +22,12 @@ void Draw( char _map[] )
 
 	system( "cls" );
 
-	printf( "¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì¢Ì\n" );
-	printf( "¢Ì " );
-	ColorChange( "RÅ° ¸®¼Â", NULL, 15 );
-	printf( " ¢Ì " );
-	ColorChange( "COUNT : %03dMOVES", g_count, 15 );
-	printf( "       ¢Ì" );
+	printf( "â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©â–©\n" );
+	printf( "â–© " );
+	ColorChange( "Rí‚¤ ë¦¬ì…‹", NULL, 15 );
+	printf( " â–© " );
+	ColorChange( "COUNT : %03dMOVES", (char *)g_count, 15 );
+	printf( "       â–©" );
 	for( i=0; i<13; i++ )
 	{
 		for( j=0; j<20; j++ )
@@ -40,35 +38,36 @@ void Draw( char _map[] )
 				printf( "  " );
 				break;
 			case 'w':
-				ColorChange( "¢Ì", NULL, 8 );
+				ColorChange( "â–©", NULL, 8 );
 				break;
 			case 's':
-				ColorChange( "¡á", NULL, 9 );
+				ColorChange( "â– ", NULL, 9 );
 				break;
 			case 'x':
 				m_boxCount = m_boxCount + 1;
-				ColorChange( "¡à", NULL, 6 );
+				ColorChange( "â–¡", NULL, 6 );
 				break;
 			case 't':
 				m_x = i;
 				m_y = j;
-				printf( "¤á", NULL, 11 );
+				m_boxCount = m_boxCount + 1;
+				printf( "ã…±", NULL, 11 );
 				break;
 			case 'i':
-				printf( "¢Ã", NULL, 11 );
+				printf( "â–£", NULL, 11 );
 				break;
 			case 'p':
 				m_x = i;
 				m_y = j;
-				ColorChange( "¢ß", NULL, 15 );
+				ColorChange( "ãˆœ", NULL, 15 );
 				break;
 			default:
-				printf( "¢Ì" );
+				printf( "â–©" );
 			}
-			//printf( "%c", g_map[i][j] );//µð¹ö±×¿ë
+			//printf( "%c", g_map[i][j] );//ë””ë²„ê·¸ìš©
 		}
 		printf( "\n" );
-		//printf( " i:%02d j:%02d\n", i,j );//µð¹ö±×¿ë, i¿Í jÀÇ °ªÀ» È®ÀÎÇÏ±â À§ÇØ
+		//printf( " i:%02d j:%02d\n", i,j );//ë””ë²„ê·¸ìš©, iì™€ jì˜ ê°’ì„ í™•ì¸í•˜ê¸° ìœ„í•´
 	}
 	if( m_boxCount != 0 )
 	{
@@ -89,29 +88,29 @@ void GameStart( char _levelName[] )
 
 void Move( int _x, int _y )
 {
-	int i = 0;	//Çà
-	int j = 0;	//¿­
+	int i = 0;	//í–‰
+	int j = 0;	//ì—´
 
-	char m_key = getch(); // Å°¸¦ ÀÔ·Â¹ÞÀ½ m_key ÇüÅÂ·Î
+	char m_key = getch(); // í‚¤ë¥¼ ìž…ë ¥ë°›ìŒ m_key í˜•íƒœë¡œ
 
 	switch( m_key )
 	{
-		case 72: //»ó
+		case 72: //ìƒ
 			g_count = g_count + 1;
 			i = -1;
 			j = 0;
 			break;
-		case 80: //ÇÏ
+		case 80: //í•˜
 			g_count = g_count + 1;
 			i = 1;
 			j = 0;
 			break;
-		case 75: //ÁÂ
+		case 75: //ì¢Œ
 			g_count = g_count + 1;
 			i = 0;
 			j = -1;
 			break;
-		case 77: //¿ì
+		case 77: //ìš°
 			g_count = g_count + 1;
 			i = 0;
 			j = 1;
@@ -170,7 +169,7 @@ void Move( int _x, int _y )
 
 		}
 		break;
-	case 'x': //Áüµé¾î°¥ ºóÄ­
+	case 'x': //ì§ë“¤ì–´ê°ˆ ë¹ˆì¹¸
 		if( g_map[_x][_y] == 't' )
 		{
 			g_map[_x+i][_y+j] = 't';
@@ -182,7 +181,7 @@ void Move( int _x, int _y )
 			g_map[_x][_y] = 'b';
 		}
 		break;
-	case 'i': //Áüµé¾îÀÖ´ÂÄ­
+	case 'i': //ì§ë“¤ì–´ìžˆëŠ”ì¹¸
 		if( g_map[_x+2*i][_y+2*j] == 'b' )
 		{
 			g_map[_x+2*i][_y+2*j] = 's';
@@ -191,6 +190,7 @@ void Move( int _x, int _y )
 		}
 		else if( g_map[_x+2*i][_y+2*j] == 'x' )
 		{
+			printf("\a");
 			g_map[_x+2*i][_y+2*j] = 'i';
 			g_map[_x+i][_y+j] = g_map[_x][_y];
 			g_map[_x][_y] = 'x';
@@ -213,13 +213,13 @@ void MoveCursor( int _x, int _y )
 void Popup()
 {	
 	char r_name[10];
-	system( "cls" );
-	MoveCursor( 11, 5 );
-	printf( "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯\n" );
-	MoveCursor( 11, 6 );
-	printf( "¦­ Congraturation ! ¦­\n" );
-	MoveCursor( 11, 7 );
-	printf( "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°\n" );
+	//system( "cls" );
+	MoveCursor( 10, 7 );
+	printf( "â”â”â”â”â”â”â”â”â”â”â”“\n" );
+	MoveCursor( 10, 8 );
+	printf( "â”ƒ Congraturation ! â”ƒ\n" );
+	MoveCursor( 10, 9 );
+	printf( "â”—â”â”â”â”â”â”â”â”â”â”›\n" );
 
 	MoveCursor( 0, 16 );
 	getch();
@@ -232,6 +232,8 @@ void LoadData( char _fileName[] )
 	char m_map[13][20];
 
 	int i = 0;
+
+	g_count = 0;
 
 	m_fp = fopen( _fileName, "r" );
 
