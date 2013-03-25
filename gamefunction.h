@@ -219,7 +219,7 @@ void Popup()
 	MoveCursor( 10, 7 );
 	printf( "┏━━━━━━━━━┓\n" );
 	MoveCursor( 10, 8 );
-	printf( "┃ Congraturation ! ┃\n" );
+	printf( "┃ Congratulations! ┃\n" );
 	MoveCursor( 10, 9 );
 	printf( "┗━━━━━━━━━┛\n" );
 
