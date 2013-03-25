@@ -1,7 +1,8 @@
 ﻿void Initialize();
-void MainScreen();
+int MainScreen();
 void SelectLevel();
 void GameStart( char _levelName[] );
+void Help();
 void Credit();
 void ColorChange( char _string[], char _variable[], int _color );
 void MapLoad( char _fileName[] );
@@ -30,7 +31,7 @@ void ColorChange( char _string[], char _variable[], int _color )
 	printf( _string, _variable );
 	SetConsoleTextAttribute( GetStdHandle(STD_OUTPUT_HANDLE), 14 );
 }
-void MainScreen()
+int MainScreen()
 {
 	char m_select = -1;
 
@@ -48,7 +49,9 @@ void MainScreen()
 	ColorChange( "▶ [ S ] 게임 시작", NULL, 15 );
 	printf( "                ▩\n" );
 	printf( "▩                                    ▩\n" );
-	printf( "▩                                    ▩\n" );
+	printf( "▩  " );
+	ColorChange( "▶ [ H ] 게임 설명", NULL, 15 );
+	printf( "                ▩\n" );
 	printf( "▩                                    ▩\n" );
 	printf( "▩  ");
 	ColorChange( "▶ [ C ] 크레딧", NULL, 15 );
@@ -57,7 +60,7 @@ void MainScreen()
 	printf( "▩                                    ▩\n" );
 	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
 
-	while( !(( m_select=='s' )||( m_select=='c' ) ) )
+	while( !(( m_select=='s' )||( m_select=='c' )||( m_select=='h' )||( m_select==27 ) ) )
 	{
 		m_select = getch();
 		switch( m_select )
@@ -70,10 +73,17 @@ void MainScreen()
 				//printf( "\a" );
 				Credit();
 				break;
+			case 'h':
+				Help();
+				break;
+			case 27:
+				return 0;
+				break;
 			default:
 				break;
 		}	
 	}
+	return 0;
 };
 
 void SelectLevel()
@@ -159,7 +169,39 @@ void SelectLevel()
 		}	
 	}
 };
+void Help()
+{
+	char m_select = -1;
 
+	system( "cls" );
+	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
+	printf( "▩                                    ▩\n" );
+	printf( "▩        ");
+	ColorChange( "P U S H      P U S H", NULL, 15 );
+	printf( "        ▩\n" );
+	printf( "▩             By KSY CYJ             ▩\n" );
+	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
+	printf( "▩                                    ▩\n" );
+	printf( "▩            ♧ 도움말 ♧            ▩\n" );
+	printf( "▩                                    ▩\n" );
+	printf( "▩     캐릭터 이동 : 방향키           ▩\n" );
+	printf( "▩            리셋 : R                ▩\n" );
+	printf( "▩       게임 중단 : ESC              ▩\n" );
+	printf( "▩                                    ▩\n" );
+	printf( "▩          돌아가려면 [R]키          ▩\n" );
+	printf( "▩                                    ▩\n" );
+	printf( "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩\n" );
+
+	while( !( m_select=='r' ) )
+	{
+		m_select = getch();
+		if( m_select == 'r' )
+		{
+			//printf( "\a" );
+			MainScreen();
+		}
+	}
+}
 void Credit()
 {
 	char m_select = -1;
