@@ -237,8 +237,7 @@ void LoadData( char _fileName[] )
 	int i = 0;
 	g_count = 0;
 
-	m_fp = fopen( _fileName, "r" );
-
+	fopen_s(&m_fp, _fileName, "r");
 	if( m_fp == NULL )
 	{
 		Popup( "Can't Open File!" );
