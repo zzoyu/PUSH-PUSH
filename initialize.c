@@ -130,6 +130,7 @@ void SelectLevel()
 				}
 				else
 				{
+					sprintf_s(g_fileName, 12, "level%s.dat", m_temp);
 					GameStart( g_fileName );
 				}
 				break;
