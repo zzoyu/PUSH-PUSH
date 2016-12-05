@@ -233,11 +233,8 @@ void Popup( char _message[] )
 
 void LoadData( char _fileName[] )
 {
-	FILE * m_fp;
-	char m_map[13][20];
-
+	FILE *m_fp;
 	int i = 0;
-
 	g_count = 0;
 
 	m_fp = fopen( _fileName, "r" );
