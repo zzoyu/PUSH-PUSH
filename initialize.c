@@ -52,7 +52,7 @@ int MainScreen()
 
 	while( !(( m_select=='s' )||( m_select=='c' )||( m_select=='h' )||( m_select==27 ) ) )
 	{
-		m_select = getch();
+		m_select = _getch();
 		switch( m_select )
 		{
 			case 's':
@@ -108,7 +108,7 @@ void SelectLevel()
 
 	while( !(( m_select=='1' )||( m_select=='2' )||( m_select=='r' )) )
 	{
-		m_select = getch();
+		m_select = _getch();
 		MoveCursor( 6, 9 );
 		printf("                        \n");
 		MoveCursor( 6, 11 );
@@ -121,7 +121,7 @@ void SelectLevel()
 				ColorChange( "레벨을 선택해 주세요.(0-9)\n", NULL, 15 );
 				MoveCursor( 6, 10 );
 				
-				scanf( "%s", &m_temp );
+				scanf_s("%s", &m_temp, sizeof(m_temp) + 1);
 
 				if( m_temp[0] == 'r' )
 				{
@@ -130,8 +130,6 @@ void SelectLevel()
 				}
 				else
 				{
-					sprintf( g_fileName, "%s%s%s", "level", m_temp, ".dat" );
-					printf( g_fileName );
 					GameStart( g_fileName );
 				}
 				break;
@@ -139,7 +137,7 @@ void SelectLevel()
 				//printf( "\a" );
 				ColorChange( "파일명을 입력해 주세요.\n", NULL, 15 );
 				MoveCursor( 6, 10 );
-				scanf( "%s", g_fileName );
+				scanf_s("%s", g_fileName, sizeof(g_fileName));
 				if( g_fileName[0] == 'r' )
 				{
 					m_select = -1;
@@ -184,7 +182,7 @@ void Help()
 
 	while( !( m_select=='r' ) )
 	{
-		m_select = getch();
+		m_select = _getch();
 		if( m_select == 'r' )
 		{
 			//printf( "\a" );
@@ -217,7 +215,7 @@ void Credit()
 
 	while( !( m_select=='r' ) )
 	{
-		m_select = getch();
+		m_select = _getch();
 		if( m_select == 'r' )
 		{
 			//printf( "\a" );

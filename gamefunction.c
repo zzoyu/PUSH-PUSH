@@ -91,7 +91,7 @@ void Move( int _x, int _y )
 	int i = 0;	//행
 	int j = 0;	//열
 
-	char m_key = getch(); // 키를 입력받음 m_key 형태로
+	char m_key = _getch(); // 키를 입력받음 m_key 형태로
 
 	switch( m_key )
 	{
@@ -227,7 +227,7 @@ void Popup( char _message[] )
 	printf( "┗━━━━━━━━━┛\n" );
 
 	MoveCursor( 0, 16 );
-	getch();
+	_getch();
 	MainScreen();
 }
 

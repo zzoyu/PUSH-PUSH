@@ -1,0 +1,11 @@
+﻿  gamefunction.c
+c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(27): warning C4013: 'ColorChange' undefined; assuming extern returning int
+c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(54): warning C4474: 'printf' : too many arguments passed for format string
+  c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(54): note: placeholders and their parameters expect 0 variadic arguments, but 2 were provided
+c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(57): warning C4474: 'printf' : too many arguments passed for format string
+  c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(57): note: placeholders and their parameters expect 0 variadic arguments, but 2 were provided
+c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(123): warning C4013: 'MainScreen' undefined; assuming extern returning int
+c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(218): warning C4101: 'r_name': unreferenced local variable
+c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(243): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+c:\users\민혁\desktop\sokoban\push-push\gamefunction.c(237): warning C4101: 'm_map': unreferenced local variable
