@@ -91,7 +91,7 @@ void Move( int _x, int _y )
 	int i = 0;	//행
 	int j = 0;	//열
 
-	char m_key = getch(); // 키를 입력받음 m_key 형태로
+	char m_key = _getch(); // 키를 입력받음 m_key 형태로
 
 	switch( m_key )
 	{
@@ -227,21 +227,17 @@ void Popup( char _message[] )
 	printf( "┗━━━━━━━━━┛\n" );
 
 	MoveCursor( 0, 16 );
-	getch();
+	_getch();
 	MainScreen();
 }
 
 void LoadData( char _fileName[] )
 {
-	FILE * m_fp;
-	char m_map[13][20];
-
+	FILE *m_fp;
 	int i = 0;
-
 	g_count = 0;
 
-	m_fp = fopen( _fileName, "r" );
-
+	fopen_s(&m_fp, _fileName, "r");
 	if( m_fp == NULL )
 	{
 		Popup( "Can't Open File!" );

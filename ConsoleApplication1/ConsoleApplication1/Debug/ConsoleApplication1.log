@@ -1,0 +1,4 @@
+﻿  initialize.c
+c:\users\민혁\desktop\sokoban\push-push\initialize.c(12): warning C4133: 'function': incompatible types - from 'char [25]' to 'LPCWSTR'
+  ConsoleApplication1.vcxproj -> C:\Users\민혁\Desktop\sokoban\PUSH-PUSH\ConsoleApplication1\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\민혁\Desktop\sokoban\PUSH-PUSH\ConsoleApplication1\Debug\ConsoleApplication1.pdb (Full PDB)
